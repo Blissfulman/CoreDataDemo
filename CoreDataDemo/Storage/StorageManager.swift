@@ -35,7 +35,7 @@ final class StorageManager {
             tasks = try context.fetch(fetchRequest)
             return tasks
         } catch let error {
-            print(error)
+            print(error.localizedDescription)
             return nil
         }
     }
@@ -64,7 +64,7 @@ final class StorageManager {
         return nil
     }
     
-    func editTask(newName: String, at index: Int) {
+    func editTask(at index: Int, withNewName newName: String) {
         guard let editingTask = getTask(at: index) else { return }
         
         editingTask.name = newName

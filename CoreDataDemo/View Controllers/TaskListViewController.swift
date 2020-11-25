@@ -172,8 +172,8 @@ extension TaskListViewController {
                                     
             guard taskName != newTaskName else { return }
             
-            self.storageManager.editTask(newName: newTaskName,
-                                         at: indexPath.row)
+            self.storageManager.editTask(at: indexPath.row,
+                                         withNewName: newTaskName)
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }
