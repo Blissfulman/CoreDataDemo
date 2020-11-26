@@ -147,7 +147,7 @@ extension TaskListViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
-            storageManager.deleteTask(at: indexPath.row)
+            storageManager.deleteTask(tasks[indexPath.row])
             tasks.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
@@ -162,18 +162,18 @@ extension TaskListViewController {
         
         self.tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let taskName = tasks[indexPath.row].name else { return }
+        let selectedTask = tasks[indexPath.row]
 
         showEditTaskAlert(withTitle: "Edit Task",
                           andMessage: "Insert a new task name",
-                          taskName: taskName) { [weak self] (newTaskName) in
+                          taskName: selectedTask.name ?? "") {
+            [weak self] (newTaskName) in
             
             guard let self = self else { return }
                                     
-            guard taskName != newTaskName else { return }
+            guard selectedTask.name != newTaskName else { return }
             
-            self.storageManager.editTask(at: indexPath.row,
-                                         withNewName: newTaskName)
+            self.storageManager.editTask(selectedTask, withNewName: newTaskName)
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
     }

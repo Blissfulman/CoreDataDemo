@@ -57,11 +57,20 @@
 			isa = PBXGroup;
 			children = (
 				CE55DB63256D8D4A00CBF2DA /* View Controllers */,
-				CE55DB61256D8D3600CBF2DA /* Storage */,
+				CE382162256FFF2D0004FBCA /* Models */,
+				CE55DB61256D8D3600CBF2DA /* Services */,
 				CE55DB5E256D8D0B00CBF2DA /* Additional Files */,
 				CE55DB60256D8D1E00CBF2DA /* Resources */,
 			);
 			path = CoreDataDemo;
+			sourceTree = "<group>";
+		};
+		CE382162256FFF2D0004FBCA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A8955885256C230A0080C497 /* CoreDataDemo.xcdatamodeld */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		CE55DB5E256D8D0B00CBF2DA /* Additional Files */ = {
@@ -82,13 +91,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		CE55DB61256D8D3600CBF2DA /* Storage */ = {
+		CE55DB61256D8D3600CBF2DA /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				A8955885256C230A0080C497 /* CoreDataDemo.xcdatamodeld */,
 				CE55DB5A256D82F700CBF2DA /* StorageManager.swift */,
 			);
-			path = Storage;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		CE55DB63256D8D4A00CBF2DA /* View Controllers */ = {
