@@ -27,22 +27,23 @@ final class StorageManager {
         context = persistentContainer.viewContext
     }
     
-    func fetchData() -> [Task]? {
+    func fetchData() -> [Task] {
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         
         do {
             return try context.fetch(fetchRequest)
         } catch let error {
             print(error.localizedDescription)
-            return nil
+            return []
         }
     }
     
-    func addTask(withName taskName: String) -> Task? {
-        
+    func addTask(withName taskName: String) -> Task {
+        /*
         guard let entityDescription = NSEntityDescription.entity(forEntityName: "Task", in: context) else { return nil }
         guard let task = NSManagedObject(entity: entityDescription, insertInto: context) as? Task else { return nil }
-        
+        */
+        let task = Task(context: context)
         task.name = taskName
         saveContext()
         return task

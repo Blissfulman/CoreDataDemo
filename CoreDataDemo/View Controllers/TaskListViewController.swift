@@ -11,8 +11,8 @@ final class TaskListViewController: UITableViewController {
     
     // MARK: - Properties
     private let cellID = "cell"
-    private var tasks: [Task] = []
     private let storageManager = StorageManager.shared
+    private var tasks = StorageManager.shared.fetchData()
 
     // MARK: - Lifecycle methods
     override func viewDidLoad() {
@@ -20,7 +20,6 @@ final class TaskListViewController: UITableViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellID)
         view.backgroundColor = .white
         setupNavigationBar()
-        fetchData()
     }
     
     // MARK: - Actions
@@ -62,19 +61,11 @@ final class TaskListViewController: UITableViewController {
         navigationController?.navigationBar.tintColor = .white
     }
     
-    private func fetchData() {
-        guard let tasks = storageManager.fetchData() else { return }
-        self.tasks = tasks
-        tableView.reloadData()
-    }
-    
     private func addTask(withName taskName: String) {
-        
-        if let task = storageManager.addTask(withName: taskName) {
-            tasks.append(task)
-            let cellIndex = IndexPath(row: tasks.count - 1, section: 0)
-            tableView.insertRows(at: [cellIndex], with: .automatic)
-        }
+        let newTask = storageManager.addTask(withName: taskName)
+        tasks.append(newTask)
+        let cellIndex = IndexPath(row: tasks.count - 1, section: 0)
+        tableView.insertRows(at: [cellIndex], with: .automatic)
     }
     
     private func showAddTaskAlert(withTitle title: String,
